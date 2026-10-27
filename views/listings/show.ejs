@@ -1,23 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wanderlust</title>
-</head>
-<body>
-    <h2>Listing Details :</h2>
-    <ul>
-        <li><%=foundListing.title%></li>
-        <li><%=foundListing.description%></li>
-        <li>₹<%=Number(foundListing.price).toLocaleString("en-IN")%></li>
-        <li><%=foundListing.location%></li>
-        <li><%=foundListing.country%></li>
-    </ul>
-    <br>
-    <a href="/listings/<%=foundListing._id%>/edit">edit listing</a><br><br>
-    <form method="POST" action="/listings/<%=foundListing._id%>?_method=DELETE">
-        <button>Delete listing</button>
-    </form>
-</body>
-</html>
+<% layout("/layouts/boilerplate.ejs")-%>
+<div class="row">
+    <div class="col-8 offset-3">
+        <h2 style="margin-top: 20px;margin-bottom: 20px;">Listing Details :</h2>
+    </div>
+        <div class="card show-card col-6 offset-3">
+            <img src="<%=foundListing.image%>" class="card-img-top show-img" alt="listing_image">
+            <div class="card-body">
+              <p class="card-text"><b><%=foundListing.title%></b><br><br>
+                <%=foundListing.description%> <br><br>
+                ₹<%=Number(foundListing.price).toLocaleString("en-IN")%> /night<br>
+                <%=foundListing.location%>,
+                <%=foundListing.country%></p>
+            </div>
+        </div>
+    <div class="btns">
+        <a href="/listings/<%=foundListing._id%>/edit" style="margin-bottom: 20px;" class="btn btn-dark offset-3 editBtn">Edit</a>
+        <form method="POST" action="/listings/<%=foundListing._id%>?_method=DELETE">
+            <button class="btn btn-dark offset-5" style="margin-bottom: 20px;">Delete</button>
+        </form>
+    </div>  
+</div>
